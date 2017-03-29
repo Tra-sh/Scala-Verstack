@@ -5,20 +5,15 @@ import application._
 import application.X._
 
 class VerstackSpec extends FlatSpec with Matchers {
-  "Overloading's" should "work" in {
-    val mo1 = new Overloading1
-    val mo2 = new Overloading2
-    mo1.f() shouldEqual 88
-    mo1.f(11) shouldEqual 13
-    mo2.f() shouldEqual 99
-    mo2.f(11) shouldEqual 14
-  }
-  "Overloading" should "work ok for methods also" in {
-    f() shouldEqual 0
-    f(1) shouldEqual 1
-    f(1, 2) shouldEqual 3
-    f(1, 2, 3) shouldEqual 6
-    f(1, 2, 3, 4) shouldEqual 10
+  "Coffee" should "be tasty" in {
+    val doubleHalfCaf = new Coffee(shots=2, decaf=1)
+    val tripleHalfCaf = new Coffee(shots=3, decaf=2)
+    doubleHalfCaf.decaf shouldEqual 1
+    doubleHalfCaf.caf shouldEqual 1
+    doubleHalfCaf.shots shouldEqual 2
+    tripleHalfCaf.decaf shouldEqual 2
+    tripleHalfCaf.caf shouldEqual 1
+    tripleHalfCaf.shots shouldEqual 3
   }
 }
 
