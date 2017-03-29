@@ -9,6 +9,16 @@ class VerstackSpec extends FlatSpec with Matchers {
     t.hours shouldEqual 5
     t.minutes shouldEqual 30
   }
+  "SimpleTime2" should "work" in {
+    val t2 = new SimpleTime2( hours=10 )
+    t2.hours shouldEqual 10
+    t2.minutes shouldEqual 0
+  }
+  "Planet" should "work" in {
+    val p = new Planet(name = "Mercury", description = "small and hot planet", moons = 0)
+    p.hasMoon shouldEqual false
+  }
+
 }
 
 
