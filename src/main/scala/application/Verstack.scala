@@ -23,9 +23,7 @@ object Verstack extends App {
     case 0 => "Cloudy"
     case _ => "Unknown"
   }
-
-
-
+  Vector(100, 80, 50, 20, 0, 15) map (i => println(forecast(i)))
 }
 
 
