@@ -7,4 +7,6 @@ Code is changing every time and stored in commits history.
 
 - `sbt run` compile and run
 - `sbt ~ ;scalastyle ;test` watch and lint and rerun tests every time
+- `sbt coverageOn` measures coverage but makes watching perform slowly
+- `sbt coverageOff` suitable for watching
 - `sbt coverageReport` - report for code coverage

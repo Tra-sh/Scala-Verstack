@@ -2,33 +2,24 @@ package application
 
 import org.scalatest._
 import application._
+import application.X._
 
 class VerstackSpec extends FlatSpec with Matchers {
-  "SimpleTime" should "work" in {
-    val t = new SimpleTime( hours=5, minutes=30 )
-    t.hours shouldEqual 5
-    t.minutes shouldEqual 30
+  "Overloading's" should "work" in {
+    val mo1 = new Overloading1
+    val mo2 = new Overloading2
+    mo1.f() shouldEqual 88
+    mo1.f(11) shouldEqual 13
+    mo2.f() shouldEqual 99
+    mo2.f(11) shouldEqual 14
   }
-  "SimpleTime2" should "work" in {
-    val t2 = new SimpleTime2( hours=10 )
-    t2.hours shouldEqual 10
-    t2.minutes shouldEqual 0
+  "Overloading" should "work ok for methods also" in {
+    f() shouldEqual 0
+    f(1) shouldEqual 1
+    f(1, 2) shouldEqual 3
+    f(1, 2, 3) shouldEqual 6
+    f(1, 2, 3, 4) shouldEqual 10
   }
-  "Planet" should "work" in {
-    val p = new Planet(name = "Mercury", description = "small and hot planet", moons = 0)
-    p.hasMoon shouldEqual false
-    val earth = new Planet(moons = 1, name = "Earth", description = "a hospitable planet")
-    earth.hasMoon shouldEqual true
-  }
-  "Item" should "work" in {
-    val flour = new Item(name="flour", 4)
-    flour.cost(grocery=true) shouldEqual 4
-    val sunscreen = new Item(name="sunscreen", 3)
-    sunscreen.cost() shouldEqual 3.3
-    val tv = new Item(name="television", 500)
-    tv.cost(rate = 0.06) shouldEqual 530
-  }
-
 }
 
 

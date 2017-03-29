@@ -1,21 +1,19 @@
 package application
 
 object X extends App {
+  def  f(): Int = 0
+  def  f(a:Int): Int = a
+  def  f(a:Int, b:Int): Int = a + b
+  def  f(a:Int, b:Int, c:Int): Int = a + b + c
+  def  f(a:Int, b:Int, c:Int, d:Int): Int = a + b + c + d
 }
 
-class SimpleTime(val hours:Int, val minutes:Int) {
+class Overloading1 {
+  def f():Int = { 88 }
+  def f(n:Int):Int = { n + 2 }
 }
 
-class SimpleTime2(val hours:Int = 0, val minutes:Int = 0) {
-}
-
-class Planet(name:String, description:String, moons:Int = 1) {
-  def hasMoon = (moons > 0)
-}
-
-class Item(name: String, price: Double) {
-  def cost(grocery: Boolean = false, medication: Boolean = false, rate: Double = 0.10):Double = {
-    if (grocery || medication) price
-    else price + (price * rate)
-  }
+class Overloading2 {
+  def f():Int = { 99 }
+  def f(n:Int):Int = { n + 3 }
 }
