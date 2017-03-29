@@ -1,7 +1,6 @@
 package application
 
 object Verstack extends Greeting with App {
-  println(greeting)
 }
 
 trait Greeting {
