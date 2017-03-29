@@ -15,6 +15,17 @@ object Verstack extends App {
     case Vector(true, false) => "First: true, second: false"
     case Vector(false, true) => "First: false, second: true"
   }
+  def forecast(percentage: Int):String = percentage match {
+    case 100 => "Sunny"
+    case 80 => "Mostly Sunny"
+    case 50 => "Partly Sunny"
+    case 20 => "Mostly Cloudy"
+    case 0 => "Cloudy"
+    case _ => "Unknown"
+  }
+
+
+
 }
 
 

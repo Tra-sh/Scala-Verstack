@@ -27,6 +27,14 @@ class VerstackSpec extends FlatSpec with Matchers {
     checkTruth(true && false, false && true) shouldEqual
     "Both are false"
   }
+  "forecast" should "also work well" in {
+    forecast(100) shouldEqual "Sunny"
+    forecast(80) shouldEqual "Mostly Sunny"
+    forecast(50) shouldEqual "Partly Sunny"
+    forecast(20) shouldEqual "Mostly Cloudy"
+    forecast(0) shouldEqual "Cloudy"
+    forecast(15) shouldEqual "Unknown"
+  }
 }
 
 
