@@ -4,17 +4,25 @@ import org.scalatest._
 import application._
 import application.X._
 
-class VerstackSpec extends FlatSpec with Matchers {
-  "Coffee" should "be tasty" in {
-    val doubleHalfCaf = new Coffee(shots=2, decaf=1)
-    val tripleHalfCaf = new Coffee(shots=3, decaf=2)
-    doubleHalfCaf.decaf shouldEqual 1
-    doubleHalfCaf.caf shouldEqual 1
-    doubleHalfCaf.shots shouldEqual 2
-    tripleHalfCaf.decaf shouldEqual 2
-    tripleHalfCaf.caf shouldEqual 1
-    tripleHalfCaf.shots shouldEqual 3
+class ThisApplication extends FlatSpec with Matchers {
+  it should "Earl Grey" in {
+    val tea = new Tea
+    tea.describe shouldEqual "Earl Grey"
+    tea.calories shouldEqual 0
+  }
+  it should "Lemon Zinger" in {
+    val lemonZinger = new Tea(decaf = true, name="Lemon Zinger")
+    lemonZinger.describe shouldEqual "Lemon Zinger decaf"
+    lemonZinger.calories shouldEqual 0
+  }
+  it should "Jasmine Green" in {
+    val sweetGreen = new Tea( name="Jasmine Green", sugar=true)
+    sweetGreen.describe shouldEqual "Jasmine Green + sugar"
+    sweetGreen.calories shouldEqual 16
+  }
+  it should "Earl Grey + milk + sugar" in {
+    val teaLatte = new Tea( sugar=true, milk=true)
+    teaLatte.describe shouldEqual "Earl Grey + milk + sugar"
+    teaLatte.calories shouldEqual 116
   }
 }
-
-
