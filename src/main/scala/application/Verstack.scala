@@ -1,6 +1,7 @@
 package application
 
 object X extends App {
+  def squareThem(args: Int*):Int = args.map(a => a*a ).sum
 }
 
 class Family(args:String*) {

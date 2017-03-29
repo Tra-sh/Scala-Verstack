@@ -2,6 +2,7 @@ package application
 
 import org.scalatest._
 import application._
+import application.X.squareThem
 
 class VerstackSpec extends FlatSpec with Matchers {
   "Family" should "return correct size" in {
@@ -23,7 +24,11 @@ class VerstackSpec extends FlatSpec with Matchers {
     cup5.increase(20, 30, 50, 20, 10, -10, -40, 10, 50) shouldEqual 100
     cup5.increase(10, 10, -10, 10, 90, 70, -70) shouldEqual 30
   }
-  
+  "squareThem" should "work well" in {
+    squareThem(2) shouldEqual 4
+    squareThem(2, 4) shouldEqual 20
+    squareThem(1, 2, 4) shouldEqual 21
+  }
 }
 
 
