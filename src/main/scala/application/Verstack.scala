@@ -1,8 +1,10 @@
 package application
 
-object Verstack extends Greeting with App {
+import basic._
+
+object Verstack extends App {
 }
 
-trait Greeting {
-  lazy val greeting: String = "hello"
+object Basics extends TheBasics {
 }
+
