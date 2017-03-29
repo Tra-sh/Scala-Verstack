@@ -9,4 +9,12 @@ object Verstack extends App {
     case true => "True!"
     case _ => "It's false"
   }
+  def checkTruth(exp1:Boolean, exp2:Boolean):String = Vector(exp1, exp2) match {
+    case Vector(true, true) => "Both are true"
+    case Vector(false, false) => "Both are false"
+    case Vector(true, false) => "First: true, second: false"
+    case Vector(false, true) => "First: false, second: true"
+  }
 }
+
+
