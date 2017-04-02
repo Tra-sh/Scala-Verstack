@@ -3,7 +3,7 @@ package application
 object X extends App {
 }
 
-class Tea(
+class Tea2(
   val decaf: Boolean = false,
   val milk: Boolean = false,
   val sugar: Boolean = false,
