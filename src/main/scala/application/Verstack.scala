@@ -1,33 +1,29 @@
 package application
 
 object X extends App {
+  def explicitDouble(d1:Double, d2:Double, d3:Double):Vector[Double] = Vector(d1, d2, d3)
+
+  def explicitList(src:Vector[Double]):List[Double] = src.toList;
+
+  def explicitSet(src:Vector[Double]):Set[Double] = src.toSet;
+
+  def forecast(percentage: Int):String = percentage match {
+     case 100 => "Sunny"
+     case 80 => "Mostly Sunny"
+     case 50 => "Partly Sunny"
+     case 20 => "Mostly Cloudy"
+      case 0 => "Cloudy"
+      case _ => "Unknown"
+  }
+
+  def historicalData(a:Vector[Int]):String = {
+    a.groupBy(a => a).mapValues(_.size)
+    .toList.sortBy(- _._1)
+    .map { case (weatherType, count) => s"${forecast(weatherType)}=$count"}
+    .mkString(", ")
+    .toString
+  }
+
 }
 
-class GardenGnome(val height:Double, val weight:Double, val happy:Boolean) {
-  var painted = true
-  def magic(level:Int):String = s"Poof! $level"
-  def this(height:Double) {
-    this(height, 100.0, true)
-  }
-  def this(name:String) = {
-    this(15.0)
-  }
-  def show():String = s"$height $weight $happy $painted"
-  def show(level:Int) = s"${magic(level)} $happy $painted"
-}
 
-
-class LabeledGardenGnome(val height:Double, val weight:Double, val happy:Boolean) {
-  var painted = true
-  var otherOptionsString = s"happy: $happy painted: $painted"
-  def magic(level:Int):String = s"Poof! $level"
-  def this(height:Double) {
-    this(height, 100.0, true)
-  }
-  def this(name:String) = {
-    this(15.0)
-    otherOptionsString = s"$happy $painted"
-  }
-  def show():String = s"height: $height weight: $weight $otherOptionsString"
-  def show(level:Int) = s"${magic(level)} $otherOptionsString"
-}
