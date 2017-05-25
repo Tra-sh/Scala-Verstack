@@ -10,3 +10,6 @@ lazy val root = (project in file(".")).
     name := "Verstack",
     libraryDependencies += scalaTest % Test
   )
+
+fork := true
+cancelable := true
