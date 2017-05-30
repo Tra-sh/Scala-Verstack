@@ -1,28 +1,48 @@
 package application
 
 object X extends App {
+  import java.io._ 
+  val file = "4.html"
+  val campagnCode = "1"
 
-  def time[R](block: => R): Unit = {  
-    val t0 = System.currentTimeMillis()
-    val result = block    // call-by-name
-    val t1 = System.currentTimeMillis()
-    println(s"Execution time: ${t1 - t0} ms")
+  def makeHTML(list: List[(String, String)]) = {
+    val header = "<html><body><ol>"
+    val footer = "</ol></body></html>"
+    val items = list.map(s => s"""<li><a href="https://m.vk.com/${s._1}?${campagnCode}" target="_blank">${s._2}</a></li>""")
+    ((header :: items) :+ footer).mkString
   }
 
-  @scala.annotation.tailrec
-  def factorial(x:BigInt, acc:BigInt = 1):BigInt = x match {
-    case x:BigInt if x <= 1 => acc
-    case x:BigInt if x > 1 => factorial(x - 1, x * acc)
+  def collectIds(string: String) = {
+    val vkontakteId = """<a class="si_owner[^>]*href="/([^"]+)">([^<]+)</a>""".r
+    for {
+      vkontakteId(id,name) <- (vkontakteId findAllIn string)
+    } yield (id,name)
   }
 
-  //time {factorial(100000)}
-  val content = factorial(1000000).toString
-  val filename = "factorial-scala.txt"
+  def read(filename: String) = {
+    import java.nio.charset.CodingErrorAction
+    import scala.io.Codec
+    implicit val codec = Codec("UTF-8")
+    codec.onMalformedInput(CodingErrorAction.REPLACE)
+    codec.onUnmappableCharacter(CodingErrorAction.REPLACE)
+    try {
+      Some(io.Source.fromFile(filename).getLines.mkString)
+    } catch {
+      case ex: FileNotFoundException => {println(s"Couldn't FIND '${filename}'"); None}
+      case ex: IOException => {println(s"Couldn't READ '${filename}'"); None}
+    }
+  }
 
-  // PrintWriter
-  import java.io._
-  val pw = new PrintWriter(new File(filename))
-  pw.write(content)
-  pw.close
+  def write(content: String, filename: String) = {
+    import java.nio.file.{Paths, Files}
+    import java.nio.charset.StandardCharsets
+    Files.write(Paths.get(filename), content.getBytes(StandardCharsets.UTF_8))
+    println(s"Done writing ${filename}!")
+  }
+
+  read(file) match {
+    case Some(s) => write(makeHTML(collectIds(s).toList), s"updated_${file}")
+    case _ => ()
+  }
 
 }
