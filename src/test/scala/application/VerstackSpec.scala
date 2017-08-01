@@ -6,9 +6,15 @@ import application.X._
 
 class ThisApp extends FlatSpec with Matchers {
   
-  it should "ever work again" in {
-    calculate(0) shouldEqual 1
-    calculate(1) shouldEqual 2
+  it should "Pattern Matching Case Classes" in {
+    val travelers = Vector(
+      Passenger("Harvey", "Rabbit"),
+      Passenger("Dorothy", "Gale"))
+    val trip = Vector(
+      Train(travelers, "Reading"),
+      Bus(travelers, 100))
+    val trip2 = Vector(Train(travelers, "Reading"), Plane(travelers, "B757"), Bus(travelers, 100))
+    travel(trip2(1)) shouldEqual "Plane B757 " + "Vector(Passenger(Harvey,Rabbit), " + "Passenger(Dorothy,Gale))"
     }
 
 }
