@@ -14,7 +14,9 @@ class ThisApp extends FlatSpec with Matchers {
       Train(travelers, "Reading"),
       Bus(travelers, 100))
     val trip2 = Vector(Train(travelers, "Reading"), Plane(travelers, "B757"), Bus(travelers, 100))
+
     travel(trip2(1)) shouldEqual "Plane B757 " + "Vector(Passenger(Harvey,Rabbit), " + "Passenger(Dorothy,Gale))"
+    travel2(Passenger("Sally", "Marie")) shouldEqual "Sally is walking"
     }
 
 }
