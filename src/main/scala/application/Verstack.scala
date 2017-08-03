@@ -10,4 +10,15 @@ object X extends App {
     override def toString = s"Bicycle built for $riders"
   }
 
+  case class Cycle(wheels:Int) {
+    override def toString = wheels match {
+      case 1 => "Unicycle"
+      case 2 => "Bicycle"
+      case 3 => "Tricycle"
+      case 4 => "Quadrocycle"
+      case n => s"Cycle with $wheels wheels"
+    }
+    
+  }
+
 }
