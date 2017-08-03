@@ -6,9 +6,9 @@ import application.X._
 
 class ThisApp extends FlatSpec with Matchers {
   
-  it should "Pattern Matching Case Classes" in {
-    assignResult(true) shouldEqual 42
-    assignResult(false) shouldEqual 47
+  it should "override" in {
+    val forTwo = Bicycle(2)
+    forTwo.toString shouldEqual "Bicycle built for 2"
   }
 
 }

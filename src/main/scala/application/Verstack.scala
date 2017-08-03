@@ -6,6 +6,8 @@ object X extends App {
   case class Plane(passengers: Vector[Passenger], name: String)
   case class Passenger(first: String, last: String)
 
-  def assignResult(arg:Boolean) = if(arg) 42 else 47
-  
+  case class Bicycle(riders:Int) {
+    override def toString = s"Bicycle built for $riders"
+  }
+
 }
