@@ -16,7 +16,8 @@ object X extends App {
       case 2 => "Bicycle"
       case 3 => "Tricycle"
       case 4 => "Quadrocycle"
-      case n => s"Cycle with $wheels wheels"
+      case n if n < 1 => "That's not a cycle!"
+      case _ => s"Cycle with $wheels wheels"
     }
     
   }

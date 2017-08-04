@@ -18,6 +18,8 @@ class ThisApp extends FlatSpec with Matchers {
     c2.toString shouldEqual "Bicycle"
     val cn = Cycle(5)
     cn.toString shouldEqual "Cycle with 5 wheels"
+    val cNegative = Cycle(-2) 
+    cNegative.toString shouldEqual "That's not a cycle!"
   }
 
 }
