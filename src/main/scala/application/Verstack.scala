@@ -1,25 +1,20 @@
 package application
 
 object X extends App {
-  case class Bus(passengers: Vector[Passenger], capacity: Int)
-  case class Train(travelers: Vector[Passenger], line: String)
-  case class Plane(passengers: Vector[Passenger], name: String)
-  case class Passenger(first: String, last: String)
-
-  case class Bicycle(riders:Int) {
-    override def toString = s"Bicycle built for $riders"
-  }
-
-  case class Cycle(wheels:Int) {
-    override def toString = wheels match {
-      case 1 => "Unicycle"
-      case 2 => "Bicycle"
-      case 3 => "Tricycle"
-      case 4 => "Quadrocycle"
-      case n if n < 1 => "That's not a cycle!"
-      case _ => s"Cycle with $wheels wheels"
+  
+    def weather(temperature: Int, humidity: Int) = {
+      val t = temperature match {
+        case n if n > 80 => "Hot"
+        case n if n < 50 => "Cold"
+        case _ => "Temperate"
+      }
+      val h = humidity match {
+        case n if (n > 40 && temperature >= 50) => "Humid"
+        case n if (n > 40 && temperature < 50) => "Damp"
+        case _ => "Pleasant"
+      }
+      (t, h)
     }
     
-  }
 
 }
