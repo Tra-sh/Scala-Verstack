@@ -31,9 +31,6 @@ object X extends App {
 
       def printActivity = println(activity)
 
-      
     }
-
-    val xx = new WalkActivity
     
 }
