@@ -21,53 +21,12 @@ object X extends App {
   class BonoboC(weight:Double, age:Int) 
     extends BonoboB(weight, age)
 
-  def display(ape:GreatApe) = s"weight: ${ape.weight} age: ${ape.age}" 
-
-  class House(
-    val address:String,
-    val state:String, 
-    val zip:String) {
-
-    def this(state:String, zip:String) = this("address?", state, zip)
-    def this(zip:String) = this("address?", "state?", zip)
-  }
-
-  class Home
-    extends House("00000") {
-    val heart = true
-    override def toString = "Where the heart is"
-  }
-
-  class VacationHouse(
-    state: String, 
-    zip: String, 
-    val startMonth: Int, 
-    val endMonth:Int) 
-    extends House(state, zip) {
-
-      def monthNameByNumber(n: Int) = n match {
-        case 1 => "Jan"
-        case 2 => "F"
-        case 3 => "Mr"
-        case 4 => "Ap"
-        case 5 => "May"
-        case 6 => "June"
-        case 7 => "Jly"
-        case 8 => "August"
-        case 9 => "S"
-        case 10 => "O"
-        case 11 => "N"
-        case 12 => "D"
-      }
-
-      val start = monthNameByNumber(startMonth)
-      val end = monthNameByNumber(endMonth)
-      override def toString = s"Rented house in MI for months of ${start} through ${end}."
+  class Bonobo2(weight:Double, age:Int, gender: String) 
+    extends GreatApe(weight, age, gender) {
+      override def myWords = Vector("Roar", "Hello")
     }
 
-  class TreeHouse(
-    val name:String, zip:String)
-    extends House(zip)
+  def display(ape:GreatApe) = s"weight: ${ape.weight} age: ${ape.age}" 
 
   class Trip(
     val origination: String, 
@@ -83,7 +42,9 @@ object X extends App {
     destination: String, 
     startDate: String,
     endDate: String,
-    movie: String) extends Trip(origination, destination, startDate, endDate)
+    movie: String) extends Trip(origination, destination, startDate, endDate) {
+      override def toString = s"${super.toString}, we watched ${movie}"
+    }
     
   class CarTrip(
     origination: String, 
