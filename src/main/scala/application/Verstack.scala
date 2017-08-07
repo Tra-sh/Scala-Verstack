@@ -1,18 +1,50 @@
 package application
 
 object XX extends App {
-  object Level extends Enumeration {
-    type Level = Value
-    val Overflow, High, Medium, Low, Empty = Value
-    val Draining, Pooling, Dry = Value
+
+  abstract class Animal {
+    val food: String
+    def templateMethod = s"The $animal goes $sound"
+    def animal: String
+    def sound: String
   }
 
-  import Level._
+  class Duck extends Animal {
+    val food = "plants"
+    def animal = "Duck"
+    override def sound = "Quack"
+  }
 
-  def checkLevel(level:Level)= level match {
-    case Overflow => ">>> Overflow!"
-    case Empty | Dry => "Alert"
-    case Pooling => "Warning!"
-    case other =>  s"Level $level OK"
+  class Cow extends Animal {
+    val food = "grass"
+    def animal = "Cow"
+    def sound = "Moo"
+  }
+
+  class Chicken extends Animal {
+    val food = "insects"
+    def animal = "??"
+    def sound = "??"
+  }
+
+  class Pig extends Animal {
+    val food = "anything"
+    def animal = "??"
+    def sound = "??"
+  }
+
+  abstract class Adder(x:Int) {
+    def add(i: Int): Int
+  }
+
+  class NumericAdder(val x:Int) extends Adder(x) {
+    def add(y:Int):Int = x + y
+  }
+
+  class Ant extends Animal {
+    val food = "???"
+    def animal = "???"
+    def sound = "???"
+    def animal(x: Int) = x+x
   }
 }
