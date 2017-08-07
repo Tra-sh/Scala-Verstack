@@ -1,60 +1,44 @@
 package application
 
-object X extends App {
+object XX extends App {
 
-  class GreatApe(
-    val weight: Double, 
-    val age: Int, 
-    val gender: String = "Female") {
-    def myWords = Vector("Roar")
+  object MonthName extends Enumeration {
+    type MonthName = Value
+    val January = Value(1)
+    val February, March, April, May, June, July, August, September, October, November, December = Value
+
+    def monthNumber(n: MonthName) = n.id
+
+    def season(n: MonthName) = n.id match {
+      case 12 | 1 | 2 => "Winter"
+      case 3 | 4 | 5 => "Spring"
+      case 6 | 7 | 8 => "Summer"
+      case 9 | 10 | 11 => "Autumn"
+    }
   }
 
-  class Bonobo(weight:Double, age:Int)
-    extends GreatApe(weight, age)
+  object Entry extends Enumeration {
+    type Entry = Value
+    val Nope, X, O = Value
+  }
+  import Entry._
 
-  class Chimpanzee(weight:Double, age:Int)
-    extends GreatApe(weight, age)
-
-  class BonoboB(weight:Double, age:Int)
-    extends Bonobo(weight, age)
-
-  class BonoboC(weight:Double, age:Int) 
-    extends BonoboB(weight, age)
-
-  class Bonobo2(weight:Double, age:Int, gender: String) 
-    extends GreatApe(weight, age, gender) {
-      override def myWords = Vector("Roar", "Hello")
+  case object Cell {
+    var entry = Entry.Nope
+    def set(e: Entry) = e match {
+      case X | O if entry == Nope => {
+        entry = e; 
+        "successful move"
+      }
+      case _ => "invalid move"
     }
+  } 
 
-  def display(ape:GreatApe) = s"weight: ${ape.weight} age: ${ape.age}" 
-
-  class Trip(
-    val origination: String, 
-    val destination: String, 
-    val startDate: String,
-    val endDate: String) {
-
-    override def toString = s"From ${origination} to ${destination}: ${startDate} to ${endDate}"
-    }
-
-  class AirplaneTrip(
-    origination: String, 
-    destination: String, 
-    startDate: String,
-    endDate: String,
-    movie: String) extends Trip(origination, destination, startDate, endDate) {
-      override def toString = s"${super.toString}, we watched ${movie}"
-    }
-    
-  class CarTrip(
-    origination: String, 
-    destination: String, 
-    startDate: String,
-    endDate: String) extends Trip(origination, destination, startDate, endDate) {
-
-    def this(
-      listOfCities: Vector[String], 
-      startDate: String, 
-      endDate: String) = this(listOfCities.head, listOfCities.last, startDate, endDate)
+  class Grid {
+    val cells = Vector.fill(3,3)(Cell)
+    def play(e:Entry , x:Int, y:Int):String = 
+      if ((0 <= x && x <= 2) && (0 <= y && y <= 2)) 
+        cells(x)(y).set(e)
+      else "invalid move"
   }
 }
