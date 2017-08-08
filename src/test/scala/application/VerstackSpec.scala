@@ -7,19 +7,18 @@ import application.XX._
 
 class ThisApp extends FlatSpec with Matchers {
   
-  it should "Abstract classes" in {
-    val duck = new Duck
-    duck.food shouldEqual "plants"
-    val cow = new Cow
-    cow.food shouldEqual "grass"
+  it should "Traits: BatteryPower" in {
+    val battery = new Battery
+    battery.monitor(80) shouldEqual "green"
+    battery.monitor(30) shouldEqual "yellow"
+    battery.monitor(10) shouldEqual "red"
+  }
 
-    val chicken = new Chicken
-    chicken.food shouldEqual "insects"
-    val pig = new Pig
-    pig.food shouldEqual "anything"
+  it should "Toy" in {
+    val toy = new BatteryPoweredToy
+    toy.monitor(50) shouldEqual "green"
 
-    
-    val num = new NumericAdder(5)
-    num.add(10) shouldEqual 15
+    val toy2 = new Toy with BatteryPower
+    toy2.monitor(50) shouldEqual "green"
   }
 }
