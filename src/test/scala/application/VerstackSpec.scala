@@ -6,19 +6,21 @@ import application._
 import application.XX._
 
 class ThisApp extends FlatSpec with Matchers {
-  
-  it should "Traits: BatteryPower" in {
-    val battery = new Battery
-    battery.monitor(80) shouldEqual "green"
-    battery.monitor(30) shouldEqual "yellow"
-    battery.monitor(10) shouldEqual "red"
-  }
+  it should "Composition" in {
 
-  it should "Toy" in {
-    val toy = new BatteryPoweredToy
-    toy.monitor(50) shouldEqual "green"
+    val serving = new ServingKitchen
+    serving.serveFood shouldEqual true
+    serving.prepFood shouldEqual false
+    serving.utensils.toString shouldEqual "Vector(ServeUtensils)"
 
-    val toy2 = new Toy with BatteryPower
-    toy2.monitor(50) shouldEqual "green"
+    val prep = new PrepKitchen
+    prep.prepFood shouldEqual true
+    prep.serveFood shouldEqual false
+    prep.utensils.toString shouldEqual "Vector(PrepUtensils)"
+
+    val simple = new SimpleKitchen
+    simple.serveFood shouldEqual true
+    simple.prepFood shouldEqual true
+    simple.utensils.toString shouldEqual "Vector(ServeUtensils, PrepUtensils)"
   }
 }
