@@ -2,49 +2,60 @@ package application
 
 object XX extends App {
 
-  trait Building
-  trait Room
-  trait Storage
-  trait Sink
-  trait Store[T]
-  trait Cook[T]
-  trait Clean[T]
-  trait Utensil extends Store[Utensil]
-    with Clean[Utensil] with Cook[Utensil]
-
-  trait Kitchen extends Room {
-    val utensils: Vector[Utensil]
-    def serveFood: Boolean
-    def prepFood: Boolean
+  trait WIFI {
+    def address = "192.168.0.200"
+    def reportStatus = "working"
   }
 
-  trait House extends Building {
-    val kitchens: Vector[Kitchen]
+  class Camera {
+    def showImage = "Showing video"
   }
 
-  class ServingKitchen extends Kitchen {
-    val utensils = Vector(new ServeUtensils)
-    val serveFood = true
-    val prepFood = false
+  trait Connections {
+    val maxConnections = 5
+    private var current = 0
+
+    def addConnection() = {
+      current += 1
+      true
+    }
+
+    def removeConnection() = {
+      current -= 1
+      true
+    }
+
+    def connect(adding: Boolean) = adding match {
+      case true if (current < maxConnections) => addConnection
+      case false if (current > 0) => removeConnection
+      case _ => false
+    }
+
+    def connected = current
   }
 
-  class PrepKitchen extends Kitchen {
-    val utensils = Vector(new PrepUtensils)
-    val serveFood = false
-    val prepFood = true
+  class WIFICamera extends Camera with WIFI
+
+  trait ArtPeriod {
+    val year: Int
+    def show (year: Int) = year match {
+      case x if x >= 1971 => "Contemporary"
+      case x if x >= 1881 => "Modern"
+      case x if x >= 1790 => "Romanticism"
+      case x if x >= 1700 => "Late Baroque"
+      case x if x >= 1600 => "Baroque"
+      case x if x >= 1300  => "Renaissance"
+      case _ => "Pre-Renaissance"
+    }
+    def show(): String = show(year)
   }
 
-  class SimpleKitchen extends Kitchen {
-    val utensils = Vector(new ServeUtensils, new PrepUtensils)
-    val serveFood = true
-    val prepFood = true
-  }
-
-  class ServeUtensils extends Utensil {
-    override val toString = "ServeUtensils"
-  }
-  class PrepUtensils extends Utensil {
-    override val toString = "PrepUtensils"
-  }
+  class Painting (
+      h: Int, 
+      w: Int, 
+      name: String, 
+      someval: Int,
+      val year: Int = 0) 
+    extends ArtPeriod
 
 }
