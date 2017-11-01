@@ -2,20 +2,7 @@ package application
 
 object XX extends App {
 
-  def and(x: Boolean, y: Boolean) = {
-    if (x) {
-      if (y) true else false
-    } else {
-      false
-    }
-  }
-
-  def or(x: Boolean, y: Boolean) = {
-    if (x) {
-      true
-    } else {
-      if (y) true else false
-    }
-  }
+  def sqrt(x: Double, y: Double = 1): Stream[Double] = 
+    Stream.cons(y, sqrt(x, ((x / y) + y) / 2))
 
 }
