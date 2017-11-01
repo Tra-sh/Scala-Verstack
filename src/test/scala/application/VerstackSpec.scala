@@ -7,9 +7,10 @@ import application.XX._
 
 class ThisApp extends FlatSpec with Matchers {
   
-  it should "sqrt" in {
-    sqrt(2)(0) shouldEqual 1
-    sqrt(2)(1) shouldEqual 1.5
+  it should "sqrtIter" in {
+    sqrtIter(2) shouldEqual 1.4142
+    sqrtIter(4) shouldEqual 2
+    sqrtIter(10000) shouldEqual 100
   }
 
 }
