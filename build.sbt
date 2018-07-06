@@ -3,12 +3,10 @@ import Dependencies._
 lazy val root = (project in file(".")).
   settings(
     inThisBuild(List(
-      scalaVersion := "2.12.4",
-      version      := "0.1.1"
+      organization := "com.example",
+      scalaVersion := "2.12.6",
+      version      := "0.1.0-SNAPSHOT"
     )),
-    name := "Verstack",
+    name := "verstk",
     libraryDependencies += scalaTest % Test
   )
-
-fork := true
-cancelable := true
